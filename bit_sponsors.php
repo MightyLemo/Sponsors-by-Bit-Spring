@@ -10,6 +10,12 @@ License: GPLv2
 define( 'SPONSORS__PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
 
 
+// THUMBNAIL IMAGES
+
+if ( function_exists( 'add_image_size' ) ) { 
+	add_image_size( 'sponsor-thumb-300x250', 300, 250 ); //(cropped)
+}
+
 // CUSTOM POST TYPE
 
 add_action('init', 'sponsor_register');
