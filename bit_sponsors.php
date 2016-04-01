@@ -61,11 +61,21 @@ function sponsor_random( $atts ){
 	
 	$output = '<div class="sponsor">';
 			
-			$args = array( 'post_type' => 'sponsor', 'posts_per_page' => 1, 'orderby' => 'rand' );
-			$loop = new WP_Query( $args );
-			while ( $loop->have_posts() ) : $loop->the_post(); 
-				$output .= get_the_content();
-			endwhile;
+		$args = array( 'post_type' => 'sponsor', 'posts_per_page' => 1, 'orderby' => 'rand' );
+		$loop = new WP_Query( $args );
+		while ( $loop->have_posts() ) : $loop->the_post(); 
+		
+			$url = get_field('sponsor_url');
+			$image = get_field('sponsor_image');
+
+			if( !empty($image) ): 
+
+				$output .= '<a href="' . $url . '"><img src="' . $image['url'] . '" alt="' . $image['alt'] . '" /></a>';
+
+			endif; 
+
+		endwhile;
+
 	$output .= '</div>';
 	
 	return $output;
